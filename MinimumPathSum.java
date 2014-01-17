@@ -62,6 +62,8 @@ public class MinimumPathSum {
 		 */
 		printMinPathRoutine(backTrackMatrix, mapMatrix, Row-1, Col-1);
 		
+		System.out.println("\nThe shortest routine sums up to: " + minPathMatrix[Row-1][Col-1] + " weight.");
+		
 	} // end main();
 
 	private static void printMinPathRoutine(char[][] backTrackMatrix, int[][] mapMatrix, int row, int col) {
