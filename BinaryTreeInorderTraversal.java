@@ -34,7 +34,7 @@ public class BinaryTreeInorderTraversal {
 		 * then create N random numbers;
 		 * Put the array into a binary Tree;
 		 */
-		System.out.println("This is the Binary Tree Preorder Traversal problem.");
+		System.out.println("This is the Binary Tree Inorder Traversal problem.");
 		System.out.println("Please input how many Nodes do you like in the tree?");
 		
 		Scanner input = new Scanner(System.in);
@@ -53,16 +53,16 @@ public class BinaryTreeInorderTraversal {
 		TreeNode Root = putArrayToTree(Nums);
 		
 		ArrayList<Integer> nodeList = new ArrayList<Integer>();
-		nodeList = postOrderTraversal(Root);
+		nodeList = inOrderTraversal(Root);
 		
-		System.out.println("After traversal: ");
+		System.out.println("After In Order traversal: ");
 		for(int e:nodeList){
 			System.out.print(e + ", ");
 		}
 		
 	} // end of main();
 
-	private static ArrayList<Integer> postOrderTraversal(TreeNode root) {
+	private static ArrayList<Integer> inOrderTraversal(TreeNode root) {
 		// TODO To traversal the preOrder Tree;
 
         ArrayList<Integer> returnList = new ArrayList<Integer>(); // build an ArrayList to store all nodes;
@@ -97,13 +97,15 @@ public class BinaryTreeInorderTraversal {
 		//Stack<TreeNode> returnStack = new Stack<TreeNode>();
 		if (root == null){
 			return stack;
-		}
+			
+		} else {
 
-		addTreeToStack(root.right, stack);
+			addTreeToStack(root.right, stack);
 
-		stack.push(root);
+			stack.push(root);
 		
-		addTreeToStack(root.left, stack);
+			addTreeToStack(root.left, stack);
+		}
 		
 		return stack;
 	} // end addTreeToStack() method;
@@ -156,4 +158,4 @@ public class BinaryTreeInorderTraversal {
 	} // end addToTree method;
 	
 
-} // end of everything in BinaryTreePreorderTraversal class;
+} // end of everything in BinaryTreeInorderTraversal class;
