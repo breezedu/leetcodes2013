@@ -95,16 +95,15 @@ public class BinaryTreeInorderTraversal {
 	private static Stack<TreeNode> addTreeToStack(TreeNode root, Stack<TreeNode> stack) {
 		// TODO Add all nodes in the tree to a stack;
 		//Stack<TreeNode> returnStack = new Stack<TreeNode>();
-
-		if(root.right!=null){
-			addTreeToStack(root.right, stack);
+		if (root == null){
+			return stack;
 		}
-	
+
+		addTreeToStack(root.right, stack);
+
 		stack.push(root);
 		
-		if(root.left!=null){
-			addTreeToStack(root.left, stack);
-		}
+		addTreeToStack(root.left, stack);
 		
 		return stack;
 	} // end addTreeToStack() method;
