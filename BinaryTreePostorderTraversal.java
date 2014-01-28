@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**********
  * Given a binary tree, 
- * return the preOrder traversal of its nodes' values.
+ * return the post Order traversal of its nodes' values.
  * 
  * @author Frog
  */
@@ -34,7 +34,7 @@ public class BinaryTreePostorderTraversal {
 		 * then create N random numbers;
 		 * Put the array into a binary Tree;
 		 */
-		System.out.println("This is the Binary Tree Preorder Traversal problem.");
+		System.out.println("This is the Binary Tree Post Order Traversal problem.");
 		System.out.println("Please input how many Nodes do you like in the tree?");
 		
 		Scanner input = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class BinaryTreePostorderTraversal {
 		ArrayList<Integer> nodeList = new ArrayList<Integer>();
 		nodeList = postOrderTraversal(Root);
 		
-		System.out.println("After traversal: ");
+		System.out.println("After post order traversal: ");
 		for(int e:nodeList){
 			System.out.print(e + ", ");
 		}
@@ -98,11 +98,11 @@ public class BinaryTreePostorderTraversal {
 		if(root!=null){
 			stack.push(root);
 		}
-		if(root.left!=null){
-			addTreeToStack(root.left, stack);
-		}
 		if(root.right!=null){
 			addTreeToStack(root.right, stack);
+		}
+		if(root.left!=null){
+			addTreeToStack(root.left, stack);
 		}
 		
 		return stack;

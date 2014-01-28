@@ -11,16 +11,6 @@ import java.util.Stack;
  * @author Frog
  */
 
-class TreeNode{
-	int val;
-	TreeNode left;
-	TreeNode right;
-	
-	TreeNode(int x){
-		val = x;
-	} 
-} // end of TreeNode class;
-
 public class BinaryTreePreorderTraversal {
 	
 	public static void main(String[] args){

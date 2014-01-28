@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**********
  * Given a binary tree, 
- * return the preOrder traversal of its nodes' values.
+ * return the In-Order traversal of its nodes' values.
  * 
  * @author Frog
  */
@@ -135,11 +135,15 @@ public class BinaryTreeInorderTraversal {
 
 	private static TreeNode addToTree(TreeNode root, int N) {
 		// TODO Add a node to a tree;
-		if(N > root.val && root.right == null){
+		if(root == null){
+			root = new TreeNode(N);
+			return root;
+			
+		}else if(N > root.val && root.right == null){
 			
 			root.right = new TreeNode(N);
 			
-		} else if (root.right != null){
+		} else if (N > root.val && root.right != null){
 			
 			addToTree(root.right, N);
 			
@@ -147,7 +151,7 @@ public class BinaryTreeInorderTraversal {
 			
 			root.left = new TreeNode(N);
 			
-		} else if (root.left != null){
+		} else if (N<=root.val && root.left != null){
 			
 			addToTree(root.left, N);
 			
