@@ -19,18 +19,18 @@ public class EvaluateReversePolishNotation {
 	
 	public static void main(String[] args){
 		
-		String[] tokens = {"4", "13", "5", "/", "+"};  
+		String[] token1 = {"4", "13", "5", "/", "+"};  
 		String[] token2 = {"2", "1", "+", "3", "*" };
 		
-		int result = evalPRN(tokens);
+		int result1 = evalPRN(token1);
 		int result2 = evalPRN(token2);
-		System.out.println("The result of tokens sequence is: " + result +" and " + result2);
+		System.out.println("The result of tokens sequence is: " + result1 +" and " + result2);
 		
 	} // end of main();
 	
 
 	private static int evalPRN(String[] tokens) {
-		// TODO Auto-generated method stub
+		// TODO To calculate the RPN equation;
 		int Len = tokens.length; // the length of tokens string array;
 		Stack<String> tokenStack = new Stack<String>();
 		
@@ -45,7 +45,7 @@ public class EvaluateReversePolishNotation {
 			} else if(tokens[i].equals("-")){
 				int val1 = Integer.parseInt(tokenStack.pop());
 				int val2 = Integer.parseInt(tokenStack.pop());
-				int val = val1 - val2;
+				int val = val2 - val1;
 				tokenStack.push(String.valueOf(val));
 				
 			} else if(tokens[i].equals("*")){
@@ -58,10 +58,10 @@ public class EvaluateReversePolishNotation {
 				
 				int val1 = Integer.parseInt(tokenStack.pop());
 				int val2 = Integer.parseInt(tokenStack.pop());
-				int val = val1 / val2;
+				int val = val2 / val1;
 				tokenStack.push(String.valueOf(val));
 			} else {
-
+				
 				tokenStack.push(tokens[i]);
 				
 			} // end if-else conditions;
