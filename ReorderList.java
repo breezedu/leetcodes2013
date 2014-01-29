@@ -85,20 +85,33 @@ public class ReorderList {
 		ListNode p = newNode;
 		
 		for(int i=0; i<count/2; i++){
+			/**********
+			 * first step, get a node from the original list
+			 * add the node into he new list;
+			 */
 			p.next = p1;
 			p1 = p1.next;
 			
 			p = p.next;
-			p.next = null;
+			p.next = null; // the original node has its own reference
 			
-			if(!stackNodes.empty()){
-				
-				p.next = stackNodes.pop();
-				p = p.next;
-				p.next = null;
-				
-			} 
+
+			/**********
+			 * the second step, pop a node from stack;
+			 * add the popped node into the new list;				
+			 */
+			p.next = stackNodes.pop();
+			p = p.next;
+			p.next = null; // we have to make the reference pointing to null;
+				 
 		} // end for e:arrayNodes loop;
+		
+		/*****
+		 * if there are even number of nodes in the original list;
+		 * then we just get half from origin half from the stack;
+		 * Otherwise, we have to get another one from the stack,
+		 * which would be the exactly 'middle' node in the original list;
+		 */
 		if(count%2 != 0){
 			p.next = stackNodes.pop();
 			p.next.next = null;
@@ -130,6 +143,6 @@ public class ReorderList {
 		
 		System.out.println("\nThere are " + Count +" nodes in the list.");
 		
-	}
+	} // end printNodes() method;
 	
 } // end of everything in ReorderList class;
