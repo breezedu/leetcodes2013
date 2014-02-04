@@ -11,8 +11,7 @@ import java.util.Scanner;
  * @author Frog
  *****************
  * Definition for singly-linked list with a random pointer.
- * PROBLEM: this will change the original randomListNodes' pointers;
- */
+ *
 class RandomListNode {
 
 	int label;
@@ -20,9 +19,9 @@ class RandomListNode {
      RandomListNode(int x) { this.label = x; }
      
  } // end RandomListNode class;
-
+*/
  
-public class CopyListWithRandomPointer {
+public class CopyListWithRandomPointerExtraNodes {
 	
 	public static void main(String[] args){
 		/************************************************
