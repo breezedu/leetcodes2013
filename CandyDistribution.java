@@ -40,6 +40,15 @@ public class CandyDistribution {
 
 	private static int candy(int[] ratings) {
 		// TODO To calculate the total candies needed.
+		/*******
+		 * 1st, build an array of candy[], each element means # of candies for each child;
+		 * iterate from left to right, all child with a rating > than his left neighbor will have 1 more candy;
+		 * But, rating array like 2 4 5 4 3 1, each child will get 1 2 3 1 1 1.
+		 * the last three children will get the same amount of candies;
+		 * which is not correct; so we need to do the iteration again from right to left;
+		 * if rating[i-1] > rating[i] && candy[i-1]<=candy[i], give child[i-1] more candies than child[i];
+		 * End
+		 */
 		
 		int Len = ratings.length;
 		
