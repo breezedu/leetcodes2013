@@ -26,52 +26,55 @@ public class ValidPalindrome {
 		input.close();
 		
 		/******
-		 // merge all these methods into checkPalidrome() method;
-		System.out.println("The string inputed is: " + inputStr);
-		String cleanStr = removePunctuation(inputStr);
+		** merge all these methods into checkPalidrome() method;
+		 System.out.println("The string inputed is: " + inputStr);
+		 String cleanStr = removePunctuation(inputStr);
 		
-		System.out.println("Removed the punctuations: " + cleanStr);
+		 System.out.println("Removed the punctuation: " + cleanStr);
 		
-		//change a to A
-		String upCase = upCaseStr(cleanStr);
-		System.out.println("After upCase change: " + upCase);
+		 //change a to A
+		 String upCase = upCaseStr(cleanStr);
+		 System.out.println("After upCase change: " + upCase);
 		*/
 		boolean palindrome = checkPalindrome(inputStr);
 		
 		if(palindrome){
 			System.out.println("The input string is a Palindrome.");
+			
 		} else {
 			System.out.println("The input string is not a Palindrome.");
-		}
+			
+		} // output whether the inputString is a palindrome or not.
 		
 		
 	} // end main();
 
 	private static boolean checkPalindrome(String inputStr) {
-		// TODO To check if a string is palindrome
+		// TODO To check if a string is Palindrome
 		int Len = inputStr.length();
 		
 		int leftP = 0; 
 		int rightP = Len-1;
-		char left = 'a';
-		char right = 'a';
+		//char left = 'a';
+		//char right = 'a';
 		
 		while(leftP < rightP){
 			
 			while(!checkValid(inputStr.charAt(leftP))){
 				++leftP;
-			}
+			} //if the charAt(leftP) is a punctuation, check next right;
+			
 			while(!checkValid(inputStr.charAt(rightP))){
 				--rightP;
-			}
+			} //if the charAt(rightP) is a punctuation, check next left;
 			
-			left = inputStr.charAt(leftP);
-			right = inputStr.charAt(rightP);
+			char left = inputStr.charAt(leftP);
+			char right = inputStr.charAt(rightP);
 			
 			if(left!=right && left != right +'a' - 'A' && right != left +'a' -'A'){
 				
 				return false;				
-			} // end if false condition;
+			} // end if false condition; a=A, a=a and A=a are true conditions; 
 			
 			leftP++;
 			rightP--;
@@ -83,7 +86,7 @@ public class ValidPalindrome {
 	} // end checkPalindrome() method;
 
 	private static boolean checkValid(char charA) {
-		// TODO Auto-generated method stub
+		// TODO Check if a character is a valid letter, only A-Z, a-z or numbers are valid;
 		if(charA>='a' && charA<='z')
 			return true;
 		if(charA>='A' && charA<='Z')
