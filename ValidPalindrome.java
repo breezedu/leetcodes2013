@@ -25,6 +25,7 @@ public class ValidPalindrome {
 		String inputStr = input.nextLine();
 		input.close();
 
+		Stopwatch Watch = new Stopwatch();
 		boolean palindrome = checkPalindrome(inputStr);
 		
 		if(palindrome){
@@ -35,6 +36,7 @@ public class ValidPalindrome {
 			
 		} // output whether the inputString is a palindrome or not.
 		
+		System.out.println("The time cost: " + Watch.elapsedTime() +". ");
 		
 	} // end main();
 
