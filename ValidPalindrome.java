@@ -24,18 +24,7 @@ public class ValidPalindrome {
 		Scanner input = new Scanner(System.in);
 		String inputStr = input.nextLine();
 		input.close();
-		
-		/******
-		** merge all these methods into checkPalidrome() method;
-		 System.out.println("The string inputed is: " + inputStr);
-		 String cleanStr = removePunctuation(inputStr);
-		
-		 System.out.println("Removed the punctuation: " + cleanStr);
-		
-		 //change a to A
-		 String upCase = upCaseStr(cleanStr);
-		 System.out.println("After upCase change: " + upCase);
-		*/
+
 		boolean palindrome = checkPalindrome(inputStr);
 		
 		if(palindrome){
@@ -61,11 +50,11 @@ public class ValidPalindrome {
 		while(leftP < rightP){
 			
 			while(!checkValid(inputStr.charAt(leftP))){
-				++leftP;
+				leftP++;
 			} //if the charAt(leftP) is a punctuation, check next right;
 			
 			while(!checkValid(inputStr.charAt(rightP))){
-				--rightP;
+				rightP--;
 			} //if the charAt(rightP) is a punctuation, check next left;
 			
 			char left = inputStr.charAt(leftP);
