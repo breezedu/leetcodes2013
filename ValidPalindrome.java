@@ -25,6 +25,8 @@ public class ValidPalindrome {
 		String inputStr = input.nextLine();
 		input.close();
 		
+		/******
+		 // merge all these methods into checkPalidrome() method;
 		System.out.println("The string inputed is: " + inputStr);
 		String cleanStr = removePunctuation(inputStr);
 		
@@ -33,8 +35,8 @@ public class ValidPalindrome {
 		//change a to A
 		String upCase = upCaseStr(cleanStr);
 		System.out.println("After upCase change: " + upCase);
-		
-		boolean palindrome = checkPalindrome(upCase);
+		*/
+		boolean palindrome = checkPalindrome(inputStr);
 		
 		if(palindrome){
 			System.out.println("The input string is a Palindrome.");
@@ -45,55 +47,40 @@ public class ValidPalindrome {
 		
 	} // end main();
 
-	private static boolean checkPalindrome(String upCase) {
+	private static boolean checkPalindrome(String inputStr) {
 		// TODO To check if a string is palindrome
-		int Len = upCase.length();
-		for(int i=0; i<Len/2; i++){
-			if(upCase.charAt(i) != upCase.charAt(Len-i-1))
-				return false;
-		}
-		
-		return true;
-	} // end checkPalindrome() method;
-
-	private static String upCaseStr(String cleanStr) {
-		// TODO Change all lowercase letters to uppcase;
-		int Len = cleanStr.length();
-		String retStr = "";
-		for(int i=0; i<Len; i++){
-			if(cleanStr.charAt(i) >= 'A' && cleanStr.charAt(i)<='Z'){
-				 char temp = (char) (cleanStr.charAt(i) + 'a'-'A');  
-				 retStr += temp;
-				 
-			} else {
-				char temp = cleanStr.charAt(i);
-				retStr += temp;
-			}
-		}
-		
-		return retStr;
-		
-	} // end upCaseStr() method;
-
-	private static String removePunctuation(String inputStr) {
-		// TODO Auto-generated method stub
-		String retStr = "";
-		String rightToLeft = "";
-		
 		int Len = inputStr.length();
 		
-		for(int i=0; i<Len; i++){
-			if(checkValid( inputStr.charAt(i) )){
-				retStr += inputStr.charAt(i);
-				rightToLeft = inputStr.charAt(i) + rightToLeft;
+		int leftP = 0; 
+		int rightP = Len-1;
+		char left = 'a';
+		char right = 'a';
+		
+		while(leftP < rightP){
+			
+			while(!checkValid(inputStr.charAt(leftP))){
+				++leftP;
 			}
-		}
+			while(!checkValid(inputStr.charAt(rightP))){
+				--rightP;
+			}
+			
+			left = inputStr.charAt(leftP);
+			right = inputStr.charAt(rightP);
+			
+			if(left!=right && left != right +'a' - 'A' && right != left +'a' -'A'){
+				
+				return false;				
+			} // end if false condition;
+			
+			leftP++;
+			rightP--;
+			
+		} // end while leftP<rightP loop;
+				
+		return true;
 		
-		System.out.println("left to right: " + retStr);
-		System.out.println("right to left: " + rightToLeft);
-		
-		return retStr;
-	} // end removePunctuation() method;
+	} // end checkPalindrome() method;
 
 	private static boolean checkValid(char charA) {
 		// TODO Auto-generated method stub
