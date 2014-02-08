@@ -14,10 +14,7 @@ import java.util.Scanner;
  * ["a","a","b"]
  * 
  * @author Frog
- * PS. This program work fine with "AAbBaa"
- * but, to check a string with punctuation: "aAa?b..<aa"
- * we have to build a new string without any punctuation first.
- * 
+ *
  */
 
 public class PalindromePartitioning {
@@ -33,31 +30,20 @@ public class PalindromePartitioning {
 		input.close();
 
 		Stopwatch Watch = new Stopwatch();
-		ArrayList<ArrayList<String>> palindromeList = new ArrayList<ArrayList<String>>();
+		ArrayList<String> palindromeList = new ArrayList<String>();
 		
 		palindromeList = palindromePartions(inputStr);
 		
-		printArrayListwithArrayList(palindromeList);
+		printArrayList(palindromeList);
 		
 		System.out.println("The time cost: " + Watch.elapsedTime() +". ");
 		
 	} // end main();
 
-	private static void printArrayListwithArrayList(
-			ArrayList<ArrayList<String>> palindromeList) {
-		// TODO Auto-generated method stub
-		
-		for(ArrayList<String> ar:palindromeList){
-			printArrayList(ar);
-		}
-		
-	} // end printArrayListwithArrayList() method;
-
-	private static void printArrayList(ArrayList<String> arrayList) {
+	private static void printArrayList(ArrayList<String> palindromeList) {
 		// TODO Printout every string in the arrayList;
-		System.out.print(" size: " + arrayList.size());
 		
-		for(String s:arrayList){
+		for(String s:palindromeList){
 			System.out.print(" " + s);
 		}
 		
@@ -67,48 +53,25 @@ public class PalindromePartitioning {
 
 	
 	
-	private static ArrayList<ArrayList<String>> palindromePartions(String inputStr) {
+	private static ArrayList<String> palindromePartions(String inputStr) {
 		// TODO Get all sub-string from inputStr which are palindrome string
 		
-		ArrayList<ArrayList<String>> retList = new ArrayList<ArrayList<String>>();
-		ArrayList<String> subStrList = new ArrayList<String>();
-		
+		ArrayList<String> retList = new ArrayList<String>();
 		int Len = inputStr.length();
-		if(Len == 0){
-			return retList;
-		}
-		
-		buildArrayofArraylist(inputStr, subStrList, retList);
-		
-		return retList; 
-		// for PalindromePartitionII, return the minimum size-1 of the string ArrayList;
-		
-	} // end palindromePartions() method;
-
-	private static void buildArrayofArraylist(String inputStr, ArrayList<String> subStrList, ArrayList<ArrayList<String>> retList) {
-		// TODO Auto-generated method stub
-		int Len = inputStr.length();
-		if(Len == 0){
-			
-			retList.add(subStrList);
-			return;
-		}
-		
 		for(int i=1; i<=Len; i++){ // i is the length of the subString;
 			
-			String subStr = inputStr.substring(0, i);
+			for(int j=0; j<=Len-i; j++){
+				String subStr = inputStr.substring(j, j+i);
 				
-				ArrayList<String> subStrList2 = new ArrayList<String>(subStrList);
 				if(checkPalindrome(subStr)){
-									
-					subStrList2.add(subStr);
-					buildArrayofArraylist(inputStr.substring(i), subStrList2, retList);
-				
+					retList.add(subStr);
 				}
 				
+			} // end for j<=Len-i loop;
 		} // end for i<=Len loop;
 		
-	} // end buildArrayofArraylist() method;
+		return retList;
+	} // end palindromePartions() method;
 
 	private static boolean checkPalindrome(String inputStr) {
 		// TODO To check if a string is Palindrome
@@ -122,11 +85,11 @@ public class PalindromePartitioning {
 		while(leftP < rightP){
 			
 			while(!checkValid(inputStr.charAt(leftP))){
-				++leftP;
+				leftP++;
 			} //if the charAt(leftP) is a punctuation, check next right;
 			
 			while(!checkValid(inputStr.charAt(rightP))){
-				--rightP;
+				rightP--;
 			} //if the charAt(rightP) is a punctuation, check next left;
 			
 			char left = inputStr.charAt(leftP);
