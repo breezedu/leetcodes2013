@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 
  * return:
  * ["aa","b"],
- * ["a","a","b"]
+ * minCut is 1;
  * 
  * @author Frog
  * PS. This program work fine with "AAbBaa"
@@ -51,16 +51,17 @@ public class PalindromePartitioningIIDPmatrix {
 		boolean[][] validPalin = new boolean[Len][Len]; // validPalin[i][j]=true means i-j is a valid Palindrome string;
 		int[] dp = new int[Len+1]; // dp[i] is the minCut needed from index i to the end;
 		
-		for(int i=Len; i>=0; i--){
+		for(int i=0; i<Len; i++){
 			dp[i] = Len -i -1; // this is the worst condition, when the string could only be divided by single letter;
-			
+			validPalin[i][i] = true;
 		} // end for i>=0 loop; end assigning the worst condition;
+		dp[Len] = 0;
 		
 		for(int i=Len-2; i>=0; i--){
 			
 			for(int j=i; j<Len; j++){
 				
-				if((s.charAt(i)==s.charAt(j)) &&(j<i+2||validPalin[i+1][j-1])){
+				if(s.charAt(i)==s.charAt(j) && (j<i+2 ||validPalin[i+1][j-1])){
 					
 					validPalin[i][j] = true;
 					dp[i] = Math.min(dp[i], dp[j+1] + 1);
@@ -69,6 +70,7 @@ public class PalindromePartitioningIIDPmatrix {
 			} // end inner for j<Len loop;
 			
 		} // end outer for i>=0 loop;
+		
 		
 		for(int i=0; i<Len; i++){
 			System.out.print(" " +dp[i]);
@@ -91,7 +93,11 @@ public class PalindromePartitioningIIDPmatrix {
 			
 			for(int j=0; j<Col; j++){
 				
-				System.out.print("  " +validPalin[i][j]);
+				if(validPalin[i][j]){
+					System.out.print(" Y");
+				} else {
+					System.out.print(" N");
+				}	
 			}
 			
 			System.out.println();
