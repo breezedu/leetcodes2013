@@ -55,7 +55,7 @@ public class PalindromePartitioningIIDPmatrix {
 			dp[i] = Len -i -1; // this is the worst condition, when the string could only be divided by single letter;
 			validPalin[i][i] = true;
 		} // end for i>=0 loop; end assigning the worst condition;
-		dp[Len] = 0;
+		dp[Len] = 0; // here dp[Len] should be -1;
 		
 		for(int i=Len-2; i>=0; i--){
 			
