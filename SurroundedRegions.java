@@ -31,12 +31,26 @@ public class SurroundedRegions {
 		int Col = input.nextInt();
 		input.close();
 		
-		char[][] oxMatrix = new char[Row][Col];
+		char[][] oxMatrix = buildOXMatrix(Row, Col); //new char[Row][Col];
+				
+		System.out.println("The original maxtrix: ");
+		printMatrix(oxMatrix);
 		
+		flapCaptured(oxMatrix);		// flap the surrounded 'O' to 'X';
+		
+		System.out.println("After flapping captured area:");
+		printMatrix(oxMatrix);
+		
+	} // end of main();
+	
+	private static char[][] buildOXMatrix(int Row, int Col) {
+		// TODO build an OX Matrix[][], assign O or X randomly
+		
+		char[][] oxMatrix = new char[Row][Col];
 		for(int i=0; i<Row; i++){
 			for(int j=0; j<Col; j++){
 				
-				if((int)(Math.random()*4)==1){
+				if((int)(Math.random()*3)==1){
 					oxMatrix[i][j] = 'O';
 					
 				} else {
@@ -47,15 +61,8 @@ public class SurroundedRegions {
 			} // end inner for j<Col loop;
 		} // end outer for i<Row loop;
 		
-		System.out.println("The original maxtrix: ");
-		printMatrix(oxMatrix);
-		
-		flapCaptured(oxMatrix);
-		
-		System.out.println("\n\nAfter flipping captured area:");
-		printMatrix(oxMatrix);
-		
-	} // end of main();
+		return oxMatrix;
+	} // end buildOXMatrix() method;
 
 	private static void flapCaptured(char[][] oxMatrix) {
 		// TODO Auto-generated method stub
@@ -144,9 +151,9 @@ public class SurroundedRegions {
 	} // end matrixWUF() method;
 
 	private static void weightUF(int i, int j, int m, int n, int[][] root) {
-		// TODO Auto-generated method stub
+		// TODO weighted union two nodes; merge to the small root
 		int col = root[0].length;
-		int root1 = findRoot(i, j, root);
+		int root1 = findRoot(i, j, root); // call findRoot() method to check the ultimate root
 		int root2 = findRoot(m, n, root);
 		
 		if(root1 > root2){
@@ -161,20 +168,21 @@ public class SurroundedRegions {
 	} // end weightUF() method;
 
 	private static int findRoot(int i, int j, int[][] root) {
+		// TODO Checkout the ultimate root of a node
 		int col = root[0].length;
 		int rootUlti = root[i][j];
 		
 		if(root[i][j] != i*col +j){
 			int m = root[i][j]/col;
 			int n = root[i][j]%col;
-			findRoot(m, n, root);
-		}
+			rootUlti = findRoot(m, n, root);
+		} // Recursion
 		
 		return rootUlti;
 	} // end findRoot() method;
 
 	private static void checkFourBoundaries(int[][] root, char[][] oxMatrix) {
-		// TODO Auto-generated method stub
+		// TODO Let the 'O's on 4 boundaries point to the [0][0] root
 		int row = root.length;
 		int col = root[0].length;
 
@@ -204,8 +212,9 @@ public class SurroundedRegions {
 	} // end checkFourBoundaries() method;
 
 	private static int[][] buildRootMatrix(int row, int col) {
-		// TODO Auto-generated method stub
+		// TODO build a row*col matrix, with consecutive order from 0 to row*col
 		int[][] root = new int[row][col];
+		
 		for(int i=0; i<row; i++){
 			
 			for(int j=0; j<col; j++){
@@ -247,7 +256,7 @@ public class SurroundedRegions {
 	}// end printMatrix(int[][]) method;
 
 	private static void printMatrix(char[][] oxMatrix) {
-		// TODO Printout the original matrix
+		// TODO Printout the original matrix of char[][]
 		int row = oxMatrix.length;
 		int col = oxMatrix[0].length;
 		
