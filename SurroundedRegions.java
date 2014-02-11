@@ -69,15 +69,15 @@ public class SurroundedRegions {
 		int row = oxMatrix.length;
 		int col = oxMatrix[0].length;
 		
-		System.out.println();
+	//	System.out.println();
 		
 		int[][] root = buildRootMatrix(row, col);
 		//	printMatrix(root); not necessary to printout the original matrix here;
 		
 		//check all 4 boundaries, if oxMatrix[i][0] =='O', then root[i][0]=0;
 		checkFourBoundaries(root, oxMatrix);
-		System.out.println("After check all four boundaries, the root matrix is:");
-		printMatrix(root);
+	//	System.out.println("After check all four boundaries, the root matrix is:");
+	//	printMatrix(root);
 		
 		//check neighbors with Weight Union Find algorithm.
 		matrixWUF(root, oxMatrix);
@@ -237,6 +237,7 @@ public class SurroundedRegions {
 		for(int i=0; i<row; i++){
 			
 			for(int j=0; j<col; j++){
+				
 				if(root[i][j]<10){
 					System.out.print("   " + root[i][j]);
 					
@@ -253,6 +254,7 @@ public class SurroundedRegions {
 			System.out.println();
 		} // end for i<row loop;
 		
+		System.out.println();
 	}// end printMatrix(int[][]) method;
 
 	private static void printMatrix(char[][] oxMatrix) {
@@ -270,6 +272,7 @@ public class SurroundedRegions {
 			System.out.println();
 		} // end outer for i<row loop;
 		
+		System.out.println();
 	} // end printMatrix() method;
 	
 
