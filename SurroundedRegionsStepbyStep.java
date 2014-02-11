@@ -22,23 +22,24 @@ public class SurroundedRegionsStepbyStep {
 	
 	public static void main(String[] args){
 		
-		//1st, build a matrix of 'X' and 'O;
+		//1st, input the Row and Col value of the matrix;
 		System.out.println("This is a Surrounded Regions program.");
 		System.out.println("Please input Row and Col of the matrix:");
 		Scanner input = new Scanner(System.in);
 		
 		int Row = input.nextInt();
 		int Col = input.nextInt();
-		input.close();
+		input.close(); 
 		
+		//2nd, build a char[][] matrix with random 'O's or 'X's;
 		char[][] oxMatrix = buildOXMatrix(Row, Col); //new char[Row][Col];	
 		System.out.println("The original maxtrix: ");
 		printMatrix(oxMatrix);
 		
-		//2nd, flap surrounded regions of 'O's;
+		//3rd, flap surrounded regions of 'O's;
 		flapCaptured(oxMatrix);		// flap the surrounded 'O' to 'X';
 		
-		//last, printout the matrix after flapping;
+		//4th and last, printout the matrix after flapping;
 		System.out.println("After flapping captured area:");
 		printMatrix(oxMatrix);
 		
@@ -46,7 +47,7 @@ public class SurroundedRegionsStepbyStep {
 	
 	
 	/*******
-	 * build a Row*Col char[][] matrix of 'O' or 'X';
+	 * build a Row*Col char[][] matrix of random 'O's or 'X's;
 	 * @param Row
 	 * @param Col
 	 * @return
