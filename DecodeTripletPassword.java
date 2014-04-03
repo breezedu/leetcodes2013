@@ -1,4 +1,4 @@
-package algorithmsDesignAnalysis;
+package leetCode2013;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,25 +64,19 @@ public class DecodeTripletPassword {
 		
 	}//end main();
 
-	private static void printArrayList(ArrayList<String> al) {
-		// TODO printout every string in an arrayList
-		if(al.size()==0){
-			System.out.println("It's an empty arrayList.");
-			return;
-		}
-		
-		for(String s:al){
-			System.out.println(" " +s);
-		}
-		
-		System.out.println();
-	}//end printArrayList() method;
 
 	private static void dfsDecode(String head, ArrayList<String> setList, ArrayList<String> prosStrList) {
 		// TODO Auto-generated method stub
 		if(head.length()==6){
 			
-			prosStrList.add(head);
+			//check if every triple-letter string in the setList could be found in the current head string;
+			//if yes, add head to prosStrList arrayList;
+			
+			if(everyTriCouldbeFound(setList, head)){
+				prosStrList.add(head);
+				
+			}			
+			// prosStrList.add(head);
 			return;
 		}
 		
@@ -91,12 +85,12 @@ public class DecodeTripletPassword {
 				String headStr = setList.get(i);
 				dfsDecode(headStr, setList, prosStrList);
 			
-			} else {
+			} else {				
 				
-			//	System.out.println(head + ": " + head.substring(head.length()-2) +", next:" +setList.get(i).substring(0,2));
 				if(head.substring(head.length()-2).equals( setList.get(i).substring(0,2) )){
+					System.out.println(head + ": " + head.substring(head.length()-2) +", next:" +setList.get(i));
 					
-					String headNext = head + setList.get(i).charAt(2);
+					String headNext = head + setList.get(i).charAt(setList.get(i).length()-1);
 					dfsDecode(headNext, setList, prosStrList);
 				}
 			}//end if-else head=="" conditions;
@@ -104,6 +98,32 @@ public class DecodeTripletPassword {
 		}//end for i<setList.size() loop;
 		
 	}//end dfsDecode() method;
+
+	private static boolean everyTriCouldbeFound(ArrayList<String> setList, String head) {
+		// TODO Auto-generated method stub
+		
+		for(int index=0; index<setList.size(); index++){
+			
+			String currStr = setList.get(index);
+			boolean found = false;
+			for(int i=0; i<4; i++){
+				for(int j=i+1; j<5; j++){
+					for(int k=j+1; k<6; k++){
+						
+						if(currStr.charAt(0)==head.charAt(i) && currStr.charAt(1)==head.charAt(j) &&
+							currStr.charAt(2)==head.charAt(k)) {
+							found = true;
+							i=6;j=6;k=6;
+						}
+					}
+				}
+			}
+			
+			if(found==false) return false;
+		}
+		return true;
+	}
+
 
 	private static String tripletPick(String oriStr) {
 		// TODO pick out three letters from a stirng, keep the original order;
@@ -122,6 +142,21 @@ public class DecodeTripletPassword {
 		
 		return retStr+oriStr.charAt(index1) + oriStr.charAt(index2) + oriStr.charAt(index3);
 	}//end tripletPick() method;
+		
+
+	private static void printArrayList(ArrayList<String> al) {
+		// TODO printout every string in an arrayList
+		if(al.size()==0){
+			System.out.println("It's an empty arrayList.");
+			return;
+		}
+		
+		for(String s:al){
+			System.out.println(" " +s);
+		}
+		
+		System.out.println();
+	}//end printArrayList() method;
 	
 	
 }//end of everything in DecodeTripletPassword class;
